@@ -9,11 +9,11 @@ namespace Config;
 class Connection {
     // Database connection parameters
     private $host = "localhost";         // Database host (usually localhost for local development)
-    private $port = "3306";             // MySQL default port
+    private $port = "3307";             // MySQL default port
     private $database = "school_management"; // Your database name
     private $username = "root";          // Database username
     private $password = "";              // Database password
-    private $charset = "utf8mb4";        // Character set
+    // Character set
     private $connection = null;          // Store the connection instance
 
     /**
@@ -27,8 +27,7 @@ class Connection {
                 // Create DSN (Data Source Name) with port
                 $dsn = "mysql:host=" . $this->host . 
                        ";port=" . $this->port .
-                       ";dbname=" . $this->database . 
-                       ";charset=" . $this->charset;
+                       ";dbname=" . $this->database ;
 
                 // Create new PDO instance with error handling options
                 $this->connection = new \PDO($dsn, $this->username, $this->password, [
