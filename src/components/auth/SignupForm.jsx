@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PasswordField from './PasswordField';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignupForm = ({ selectedRole }) => {
   const [formData, setFormData] = useState({
@@ -26,10 +27,48 @@ const SignupForm = ({ selectedRole }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({ ...formData, role: selectedRole });
+    
+    try {
+      const response = await fetch('http://localhost:5000/backend/api/register.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, role: selectedRole }),
+      });
+
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Account created successfully',
+          icon: 'success',
+          confirmButtonColor: '#03332E',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '/signin';
+          }
+        });
+      } else {
+        Swal.fire({
+          title: 'Error!',
+          text: data.message || 'Failed to create account',
+          icon: 'error',
+          confirmButtonColor: '#03332E',
+        });
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Something went wrong. Please try again.',
+        icon: 'error',
+        confirmButtonColor: '#03332E',
+      });
+    }
   };
 
   // Render different fields based on role

@@ -8,7 +8,7 @@ import AdminStudents from './pages/admin/AdminStudents';
 import AdminSettings from './pages/admin/AdminSettings';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>
@@ -19,7 +19,7 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/reports" element={<AdminReports />} />
-        <Route path="/admin/students" element={<AdminStudents />} />
+        {/*<Route path="/admin/students" element={<AdminStudents />} />*/}
         <Route path="/admin/settings" element={<AdminSettings />} />
         
         {/* Default Route */}
@@ -29,6 +29,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

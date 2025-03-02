@@ -9,11 +9,10 @@ namespace Config;
 class Connection {
     // Database connection parameters
     private $host = "localhost";         // Database host (usually localhost for local development)
-    private $port = "3306";             // MySQL default port
+    private $port = "3307";             // MySQL default port
     private $database = "school_management"; // Your database name
     private $username = "root";          // Database username
     private $password = "";              // Database password
-   
     private $connection = null;          // Store the connection instance
 
     /**
