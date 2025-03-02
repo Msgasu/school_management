@@ -13,7 +13,6 @@ class Connection {
     private $database = "school_management"; // Your database name
     private $username = "root";          // Database username
     private $password = "";              // Database password
-    // Character set
     private $connection = null;          // Store the connection instance
 
     /**
@@ -27,8 +26,8 @@ class Connection {
                 // Create DSN (Data Source Name) with port
                 $dsn = "mysql:host=" . $this->host . 
                        ";port=" . $this->port .
-                       ";dbname=" . $this->database ;
-
+                       ";dbname=" . $this->database;
+                      
                 // Create new PDO instance with error handling options
                 $this->connection = new \PDO($dsn, $this->username, $this->password, [
                     \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
