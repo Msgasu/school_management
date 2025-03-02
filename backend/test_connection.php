@@ -1,11 +1,11 @@
 <?php
 
-require_once 'config/Database.php';
+require_once 'config/Connection.php';
 
-use Config\Database;
+use Config\Connection;
 
 // Create database instance
-$database = new Database();
+$database = new Connection();
 
 try {
     // Try to get connection
@@ -13,4 +13,4 @@ try {
     echo "Database connection successful!";
 } catch (Exception $e) {
     echo "Connection failed: " . $e->getMessage();
-} 
+}

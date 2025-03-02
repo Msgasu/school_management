@@ -6,9 +6,10 @@ namespace Config;
  * Database Connection Configuration
  * This class handles the database connection settings for the application
  */
-class Database {
+class Connection {
     // Database connection parameters
     private $host = "localhost";         // Database host (usually localhost for local development)
+    private $port = "3306";             // MySQL default port
     private $database = "school_management"; // Your database name
     private $username = "root";          // Database username
     private $password = "";              // Database password
@@ -23,8 +24,9 @@ class Database {
         try {
             // If no connection exists, create a new one
             if ($this->connection === null) {
-                // Create DSN (Data Source Name)
+                // Create DSN (Data Source Name) with port
                 $dsn = "mysql:host=" . $this->host . 
+                       ";port=" . $this->port .
                        ";dbname=" . $this->database . 
                        ";charset=" . $this->charset;
 
